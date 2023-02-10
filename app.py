@@ -22,7 +22,7 @@ def inference(model_inputs:dict) -> dict:
     if mp3BytesString == None:
         return {'message': "No input provided"}
     
-    # inputLanguage = model_inputs.get('language', None)
+    inputLanguage = model_inputs.get('language', None)
     # if inputLanguage == None:
     #     return {'message': "No language provided"}
     
@@ -31,7 +31,7 @@ def inference(model_inputs:dict) -> dict:
         file.write(mp3Bytes.getbuffer())
     
     # Run the model
-    result = model.transcribe("input.mp3", language='es')
+    result = model.transcribe("input.mp3", language=inputLanguage)
     os.remove("input.mp3")
     # Return the results as a dictionary
     return result
