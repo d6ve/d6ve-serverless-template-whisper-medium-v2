@@ -42,7 +42,7 @@ def inference(model_inputs:dict) -> dict:
         file.write(mp3Bytes.getbuffer())
     
     # Run the model
-    result = model.transcribe("input.mp3", **args,)
+    result = model.transcribe("input.mp3", language='en')
     os.remove("input.mp3")
     # Return the results as a dictionary
     return result
