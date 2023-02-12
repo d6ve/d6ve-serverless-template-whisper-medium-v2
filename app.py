@@ -29,8 +29,7 @@ def inference(model_inputs:dict) -> dict:
     inputTask = model_inputs.get('task', None)
     if inputTask == None:
         return {'message': "No task provided"}
-       
-    
+        
     args = dict(
         language = (None if inputLanguage.lower() == "auto" else inputLanguage),
         task = inputTask
@@ -41,12 +40,8 @@ def inference(model_inputs:dict) -> dict:
         file.write(mp3Bytes.getbuffer())
     
     # Run the model
-    result = model.transcribe("input.mp3",
-        language = inputLanguage,
-        task = inputTask)
-    
-    # outputText = {"text":result["text"]}
-    # outputSegments = {"segments":result["segments"]}
+    result = model.transcribe("input.mp3",**args)
     os.remove("input.mp3")
+
     # Return the results as a dictionary
     return result
