@@ -22,18 +22,18 @@ def inference(model_inputs:dict) -> dict:
     if mp3BytesString == None:
         return {'message': "No input provided"}
     
-    language = model_inputs.get('language', None)
-    if language == None:
+    inputLanguage = model_inputs.get('language', None)
+    if inputLanguage == None:
         return {'message': "No language provided"}
     
-    task = model_inputs.get('task', None)
-    if task == None:
+    inputTask = model_inputs.get('task', None)
+    if inputTask == None:
         return {'message': "No task provided"}
        
     
     args = dict(
-        language = (None if language == "Auto detection" else language),
-        task = task
+        language = (None if inputLanguage.lower() == "auto" else inputLanguage),
+        task = inputTask
     )
     
     mp3Bytes = BytesIO(base64.b64decode(mp3BytesString.encode("ISO-8859-1")))
