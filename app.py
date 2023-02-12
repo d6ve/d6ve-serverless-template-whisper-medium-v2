@@ -41,7 +41,9 @@ def inference(model_inputs:dict) -> dict:
         file.write(mp3Bytes.getbuffer())
     
     # Run the model
-    result = model.transcribe("input.mp3", **args)
+    result = model.transcribe("input.mp3",
+        language = inputLanguage,
+        task = inputTask)
     
     # outputText = {"text":result["text"]}
     # outputSegments = {"segments":result["segments"]}
